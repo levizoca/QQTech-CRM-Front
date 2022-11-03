@@ -1,44 +1,48 @@
 const express = require('express');
-const sequelize = require('./config/sequelize');
 const app = express()
 const port = 5000;
-const db = require("./db");
+const exphbs = require ('express-handlebars');
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html')
-})
+app.engine('hbs', exphbs.engine({extname: '.hbs'}));
+app.set('view engine', 'hbs');
+app.set('views', './views');
 
 app.get('/home', (req, res) => {
-    res.sendFile(__dirname + '/views/home.html')
+    res.render('home');
 })
 
 app.get('/atualizar/crm', (req, res) => {
-    res.sendFile(__dirname + '/views/atualizarCRM.html')
+    res.render('atualizarCRM')
 })
 
 app.get('/cadastro/colaborador', (req, res) => {
-    res.sendFile(__dirname + '/views/cadastroColaborador.html')
+    res.render('cadastroColaborador')
 })
 
 app.get('/cadastro/crm', (req, res) => {
-    res.sendFile(__dirname + '/views/cadastroCRM.html')
+    res.render('cadastroCRM')
 })
 
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/views/login.html')
+    res.render('login')
 })
 
-app.get('/visualizar/colaborador', (req, res) => {
-    res.sendFile(__dirname + '/views/visualizarColaborador.html')
+app.get('/colaborador/visualizar', (req, res) => {
+    res.render('visualizarColaborador')
 })
 
 app.get('/visualizar/crm', (req, res) => {
-    res.sendFile(__dirname + '/views/visualizarCRM.html')
+    res.render('visualizarCRM')
 })
 
 app.get('/sobre', (req, res) => {
     res.send("Um simples tutorial de NodeJS.")
 })
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/views/index.html')
+})
+
 
 app.use('/public', express.static(__dirname + '/public'))
 

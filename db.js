@@ -1,13 +1,14 @@
 const { Pool } = require('pg')
 
-const pool = new Pool({
+const database = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'crm',
   password: 'root',
   port: 5432,
 })
-pool.query('SELECT NOW()', (err, res) => {
+
+/*database.query('SELECT * FROM colaborador where id=1', (err, res) => {
   console.log(err, res) 
-  pool.end() 
-})
+  database.end() 
+})*/
